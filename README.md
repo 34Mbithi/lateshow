@@ -12,11 +12,6 @@ Retrieve detailed information about a specific episode, including its guests and
 Add new appearances for guests on specific episodes
 Easy to extend with additional features
 
-Late Show
-
-Welcome to the Late Show project! This Flask application is designed to manage episodes, guests, and their appearances on a late-night talk show. 
-It provides a RESTful API for CRUD operations on episodes and guests, as well as their respective appearances.
-
 
 Technologies Used
 Python 3.8+
