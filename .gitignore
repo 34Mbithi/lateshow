@@ -1,9 +1,6 @@
-# Byte-compiled / optimized / DLL files
-__pycache__/
-*.py[cod]
-*$py.class
 
-# Distribution / packaging
+__pycache__/
+
 .Python
 env/
 venv/
@@ -23,26 +20,17 @@ var/
 .installed.cfg
 *.egg
 
-# Flask specific
+
 instance/
 *.db
 *.sqlite3
 
-# Logs and databases
+
 *.log
 *.sqlite3
 *.db
 *.env
 
-# Pytest / Coverage reports
-htmlcov/
-.tox/
-.coverage
-.cache
-nosetests.xml
-coverage.xml
-*.cover
-.hypothesis/
 
 # Environment variables
 .env

@@ -18,7 +18,6 @@ def create_app():
     db.init_app(app)
     migrate.init_app(app, db)
     
-    # Initialize Marshmallow with the SQLAlchemy instance
     ma.init_app(app)
 
     # Register routes

@@ -4,13 +4,13 @@ from . import db
 
 api_bp = Blueprint('api', __name__)
 
-# Route to get all episodes
+# get all episodes
 @api_bp.route('/episodes', methods=['GET'])
 def get_episodes():
     episodes = Episode.query.all()
     return jsonify([{"id": ep.id, "date": ep.date, "number": ep.number} for ep in episodes])
 
-# Route to get a specific episode by ID
+# get a specific episode by ID
 @api_bp.route('/episodes/<int:id>', methods=['GET'])
 def get_episode(id):
     episode = Episode.query.get(id)
@@ -36,13 +36,13 @@ def get_episode(id):
     else:
         return jsonify({"error": "Episode not found"}), 404
 
-# Route to get all guests
+# get all guests
 @api_bp.route('/guests', methods=['GET'])
 def get_guests():
     guests = Guest.query.all()
     return jsonify([{"id": guest.id, "name": guest.name, "occupation": guest.occupation} for guest in guests])
 
-# Route to create an appearance
+# create an appearance
 @api_bp.route('/appearances', methods=['POST'])
 def create_appearance():
     data = request.get_json()
@@ -72,3 +72,16 @@ def create_appearance():
         }), 201
     except Exception as e:
         return jsonify({"errors": ["validation errors"]}), 400
+
+# delete an episode by ID
+@api_bp.route('/episodes/<int:id>', methods=['DELETE'])
+def delete_episode(id):
+    episode = Episode.query.get(id)
+    if episode:
+        # Delete all appearances related to the episode
+        db.session.delete(episode)
+        db.session.commit()
+        return jsonify({"message": f"Episode {id} deleted successfully"}), 200
+    else:
+        return jsonify({"error": "Episode not found"}), 404
+
